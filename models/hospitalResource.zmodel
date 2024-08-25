@@ -1,0 +1,18 @@
+
+ import "./hospital.zmodel"  
+ import "./resource.zmodel"  
+
+model HospitalResource {
+
+    id                String        @id @default(uuid())  
+    quantity    Float            
+    lastUpdated  String          
+
+hospitalId  String          
+    hospital    Hospital?    @relation(fields: [hospitalId], references: [id], name:"hospital")  
+    resourceId  String          
+    resource    Resource?    @relation(fields: [resourceId], references: [id], name:"resource")  
+      dateCreated DateTime @default(now())
+      dateUpdated DateTime @updatedAt  @default(now())
+      @@allow("all", true)
+}

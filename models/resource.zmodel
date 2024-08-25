@@ -1,0 +1,16 @@
+
+ import "./hospitalResource.zmodel"  
+ import "./allocation.zmodel"  
+
+model Resource {
+
+    id                String        @id @default(uuid())  
+    name            String          
+    type            String          
+
+hospitalResources  HospitalResource[]  @relation("resource")  
+    allocations  Allocation[]  @relation("resource")  
+      dateCreated DateTime @default(now())
+      dateUpdated DateTime @updatedAt  @default(now())
+      @@allow("all", true)
+}

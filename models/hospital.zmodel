@@ -1,0 +1,22 @@
+
+ import "./organization.zmodel"  
+ import "./hospitalResource.zmodel"  
+ import "./allocation.zmodel"  
+ import "./pandemicCase.zmodel"  
+
+model Hospital {
+
+    id                String        @id @default(uuid())  
+    name            String          
+    address      String          
+    contactNumber  String          
+
+organizationId  String          
+    organization  Organization?  @relation(fields: [organizationId], references: [id], name:"organization")  
+    hospitalResources  HospitalResource[]  @relation("hospital")  
+    allocations  Allocation[]  @relation("hospital")  
+    pandemicCases  PandemicCase[]  @relation("hospital")  
+      dateCreated DateTime @default(now())
+      dateUpdated DateTime @updatedAt  @default(now())
+      @@allow("all", true)
+}

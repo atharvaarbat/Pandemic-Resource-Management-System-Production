@@ -1,0 +1,15 @@
+
+ import "./hospital.zmodel"  
+
+model PandemicCase {
+
+    id                String        @id @default(uuid())  
+    numberOfCases  Float            
+    reportDate  String          
+
+hospitalId  String          
+    hospital    Hospital?    @relation(fields: [hospitalId], references: [id], name:"hospital")  
+      dateCreated DateTime @default(now())
+      dateUpdated DateTime @updatedAt  @default(now())
+      @@allow("all", true)
+}
